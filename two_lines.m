@@ -1,7 +1,7 @@
 clear;
 close all;
 
-d_y = 0.5;
+d_y = 0.1;
 x0 = 1;
 y0 = 1;
 x1 = 4;
@@ -32,7 +32,11 @@ y1_grid = polyval(linfit1, x_grid);
 y2_grid = polyval(linfit2, x_grid);
 [~, d_y1_grid] = meshgrid(x_draw, confidence1);
 [~, d_y2_grid] = meshgrid(x_draw, confidence2);
-[p1, p2] = get_prob(y_grid, ones(size(y_grid)) * d_y, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
+% absolute errors
+%[p1, p2] = get_prob(y_grid, ones(size(y_grid)) * d_y, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
+% relative errors
+[p1, p2] = get_prob(y_grid, y_grid * d_y, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
+
 
 fig = getFig('$x$', '$y$');
 draw_line(fig.ax, y1, confidence1, x_draw, getMyColor(1), '$th_1$');
