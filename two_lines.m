@@ -1,7 +1,8 @@
 clear;
 close all;
 
-d_y = 0.2;
+d_y_rel = 0.2;
+max_cert = 10;
 x0 = 0;
 y0 = 2;
 x1 = 30;
@@ -35,7 +36,7 @@ y2_grid = polyval(linfit2, x_grid);
 % absolute errors
 %[p1, p2] = get_prob(y_grid, ones(size(y_grid)) * d_y, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
 % relative errors
-[p1, p2] = get_prob(y_grid, y_grid * d_y, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
+[p1, p2] = get_prob(y_grid, y_grid * d_y_rel, y1_grid, d_y1_grid, y2_grid, d_y2_grid);
 
 
 fig = getFig('$x$', '$y$');
@@ -48,8 +49,8 @@ p1_surf = surf(fig_p.ax, x_grid, y_grid, p1, 'DisplayName', '$p_1$', ...
 p2_surf = surf(fig_p.ax, x_grid, y_grid, p2, 'DisplayName', '$p_2$', ...
     'EdgeColor', 'interp', 'FaceColor', 'interp', 'FaceAlpha', 0.5);
 
-fig_cert = getFig('$x$', '$y$', ['certainty = $|\log(p_1/p_2)|; dy = ' num2str(d_y) '$'], '', '', 'log', '$c$');
-surf(fig_cert.ax, x_grid, y_grid, exp(min(abs(log(p1./p2)), log(100))), ...
+fig_cert = getFig('$x$', '$y$', ['certainty = $|\log(p_1/p_2)|; dy = ' num2str(d_y_rel) '$'], '', '', 'log', '$c$');
+surf(fig_cert.ax, x_grid, y_grid, exp(min(abs(log(p1./p2)), log(max_cert))), ...
     'EdgeColor', 'interp', 'FaceColor', 'interp');
 
 % fig_p1 = getFig('x', 'y', '$p_1(x,y)$', '', '', '', '$p_1$');
