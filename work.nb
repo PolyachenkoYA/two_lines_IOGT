@@ -1,0 +1,106 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframDesktop 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       161,          7]
+NotebookDataLength[      2799,         96]
+NotebookOptionsPosition[      2325,         79]
+NotebookOutlinePosition[      2723,         95]
+CellTagsIndexPosition[      2680,         92]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "-", "a1"}], ")"}], "^", "2"}]}], "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"s1", "^", "2"}]}], ")"}]}], "-", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"x", "-", "a2"}], ")"}], "^", "2"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"s2", "^", "2"}]}], ")"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}], ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a1", ">", "0"}], "&&", 
+      RowBox[{"s1", ">", "0"}], "&&", 
+      RowBox[{"a2", ">", "0"}], "&&", 
+      RowBox[{"s2", ">", "0"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8170925026489697`*^9, 3.817092565784037*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"4279c668-264a-4d03-830b-b144ea95d57e"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", 
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"a1", "-", "a2"}], ")"}], "2"], 
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["s1", "2"], "+", 
+         SuperscriptBox["s2", "2"]}], ")"}]}]]}]], " ", 
+   SqrtBox[
+    RowBox[{"2", " ", "\[Pi]"}]], " ", "s1", " ", "s2"}], 
+  SqrtBox[
+   RowBox[{
+    SuperscriptBox["s1", "2"], "+", 
+    SuperscriptBox["s2", "2"]}]]]], "Output",
+ CellChangeTimes->{{3.8170925485975037`*^9, 3.817092569602689*^9}},
+ CellLabel->"Out[2]=",ExpressionUUID->"5c8573bd-21d9-434d-8eeb-976605450fa6"]
+}, Open  ]]
+},
+WindowSize->{606., 658.5},
+WindowMargins->{{366.75, Automatic}, {54, Automatic}},
+FrontEndVersion->"12.1 for Linux x86 (64-bit) (March 20, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"bfe70029-1cdb-4c88-829c-52c25386f05c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[583, 22, 1034, 31, 71, "Input",ExpressionUUID->"4279c668-264a-4d03-830b-b144ea95d57e"],
+Cell[1620, 55, 689, 21, 98, "Output",ExpressionUUID->"5c8573bd-21d9-434d-8eeb-976605450fa6"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
