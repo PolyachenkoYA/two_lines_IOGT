@@ -1,8 +1,8 @@
 clear;
 close all;
 
-d_y_rel = 0.2;
-max_cert = 10;
+d_y_rel = 0.08;
+max_cert = 2;
 x0 = 0;
 y0 = 2;
 x1 = 30;
