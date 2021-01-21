@@ -32,8 +32,8 @@ plot(a_draw, acc, 'DisplayName', 'data');
 plot([0, a0], [1, 1] * p0, '--', 'DisplayName', ['$p_0 = $' num2str(p0)], 'Color', getMyColor(3));
 plot([1, 1] * a0, [0, p0], '--', 'DisplayName', ['$\sigma(p_0) = $' num2str(a0)], 'Color', getMyColor(3));
 
-plot([0, a1], [1, 1] * p1, '--', 'DisplayName', ['$p_1 = $' num2str(p1)], 'Color', getMyColor(2));
-plot([1, 1] * a1, [0, p1], '--', 'DisplayName', ['$\sigma(p_1) = $' num2str(a1)], 'Color', getMyColor(2));
+plot([1, 1] * a1, [0, p1], '--', 'DisplayName', ['$\sigma_1 = $' num2str(a1)], 'Color', getMyColor(2));
+plot([0, a1], [1, 1] * p1, '--', 'DisplayName', ['$p(\sigma_1) = $' num2str(p1)], 'Color', getMyColor(2));
 
 
 function ret = g(y, m, s2)
@@ -53,7 +53,7 @@ end
 function ret = accur(a, x0, y0, k1, k2, x1, x2, y1, y2)
     min_k = min(k1, k2);
     max_k = max(k1, k2);
-    i1 = quad2d(@(x,y)(r(a, x, y, x0, y0, min_k)), ...
+    i1 = integral2(@(x,y)(r(a, x, y, x0, y0, min_k)), ...
                    x1, x2, @(x)(y0 + (k1 + k2) / 2 .* (x - x0)), y2) / ... 
                    z(a, x0, y0, min_k, x1, x2, y1, y2);
     i2 = integral2(@(x,y)(r(a, x, y, x0, y0, max_k)), ...
