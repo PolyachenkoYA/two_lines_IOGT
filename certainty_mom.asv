@@ -13,7 +13,7 @@ y2 = 40;
 %% =================== input ============
 p0 = 0.8;
 a1 = 0.2;
-scl = 0.34;
+scl = 
 
 %% =============== program ===============
 a0 = fsolve(@(a)(accur(a, x0, y0, k1, k2, x1, x2, y1, y2) - p0), 0.2);
@@ -27,14 +27,14 @@ for i = 1:N
     disp(['done ' num2str(i/N * 100) ' %']);
 end
 
-getFig(['$\sigma_{rel} / \Delta$; $\Delta = ' num2str(scl) '$'], '$p$', '$p(\sigma)$');
-plot(a_draw / scl, acc, 'DisplayName', 'data');
+getFig('$\sigma_{rel}$', '$p$');
+plot(a_draw / 0.34, acc, 'DisplayName', 'data');
 
-plot([0, a0] / scl, [1, 1] * p0, '--', 'DisplayName', ['$p_0 = $' num2str(p0)], 'Color', getMyColor(3));
-plot([1, 1] * a0 / scl, [0, p0], '--', 'DisplayName', ['$\sigma(p_0) = $' num2str(a0)], 'Color', getMyColor(3));
+plot([0, a0], [1, 1] * p0, '--', 'DisplayName', ['$p_0 = $' num2str(p0)], 'Color', getMyColor(3));
+plot([1, 1] * a0, [0, p0], '--', 'DisplayName', ['$\sigma(p_0) = $' num2str(a0)], 'Color', getMyColor(3));
 
-plot([1, 1] * a1 / scl, [0, p1], '--', 'DisplayName', ['$\sigma_1 = $' num2str(a1)], 'Color', getMyColor(2));
-plot([0, a1] / scl, [1, 1] * p1, '--', 'DisplayName', ['$p(\sigma_1) = $' num2str(p1)], 'Color', getMyColor(2));
+plot([1, 1] * a1, [0, p1], '--', 'DisplayName', ['$\sigma_1 = $' num2str(a1)], 'Color', getMyColor(2));
+plot([0, a1], [1, 1] * p1, '--', 'DisplayName', ['$p(\sigma_1) = $' num2str(p1)], 'Color', getMyColor(2));
 
 
 function ret = g(y, m, s2)
