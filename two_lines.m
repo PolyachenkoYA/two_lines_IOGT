@@ -1,8 +1,8 @@
 clear;
 close all;
 
-d_y_rel = 0.08;
-max_cert = 2;
+d_y_rel = 0.2;
+max_cert = 10;
 x0 = 0;
 y0 = 2;
 x1 = 30;
@@ -62,8 +62,7 @@ surf(fig_cert.ax, x_grid, y_grid, exp(min(abs(log(p1./p2)), log(max_cert))), ...
 function [p1, p2] = get_prob(y, d_y, y1, d_y1, y2, d_y2)
     p1 = normpdf(y - y1, 0, sqrt(d_y.^2 + d_y1.^2));
     p2 = normpdf(y - y2, 0, sqrt(d_y.^2 + d_y2.^2));
-    z = p1 + p2;
-    p1 = p1 ./ z;
+    p1 = p1 ./ (p1 + p2);
     p2 = 1 - p1;
 end
 
