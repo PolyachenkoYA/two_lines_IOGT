@@ -14,6 +14,10 @@ d_b1 = 0.1;
 d_b2 = 0.1;
 Nx = 250;
 Ny = 250;
+clr1 = [1, 0, 0];
+clr2 = [0, 0, 0];
+tit1 = '$th_1$';
+tit2 = '$th_2$';
 
 x_draw = linspace(x0, x1, Nx);
 b1 = y0 - k1 * x0;
@@ -40,18 +44,24 @@ y2_grid = polyval(linfit2, x_grid);
 
 
 fig = getFig('$x$', '$y$');
-draw_line(fig.ax, y1, confidence1, x_draw, getMyColor(1), '$th_1$');
-draw_line(fig.ax, y2, confidence2, x_draw, getMyColor(2), '$th_2$');
+draw_line(fig.ax, x_draw, y1, confidence1, clr1, tit1);
+draw_line(fig.ax, x_draw, y2, confidence2, clr2, tit2);
 
 fig_p = getFig('$x$', '$y$', '', '', '', '', '$p$');
 p1_surf = surf(fig_p.ax, x_grid, y_grid, p1, 'DisplayName', '$p_1$', ...
     'EdgeColor', 'interp', 'FaceColor', 'interp', 'FaceAlpha', 0.5);
 p2_surf = surf(fig_p.ax, x_grid, y_grid, p2, 'DisplayName', '$p_2$', ...
     'EdgeColor', 'interp', 'FaceColor', 'interp', 'FaceAlpha', 0.5);
+draw_line_3d(fig_p.ax, x_draw, y1, confidence1, 1, clr1, tit1);
+draw_line_3d(fig_p.ax, x_draw, y2, confidence2, 1, clr2, tit2);
 
 fig_cert = getFig('$x$', '$y$', ['certainty = $|\log(p_1/p_2)|; dy = ' num2str(d_y_rel) '$'], '', '', 'log', '$c$');
-surf(fig_cert.ax, x_grid, y_grid, exp(min(abs(log(p1./p2)), log(max_cert))), ...
+z_draw = exp(min(abs(log(p1./p2)), log(max_cert)));
+surf(fig_cert.ax, x_grid, y_grid, z_draw, 'DisplayName', 'data', ...
     'EdgeColor', 'interp', 'FaceColor', 'interp');
+draw_line_3d(fig_cert.ax, x_draw, y1, confidence1, max(z_draw, [], 'all'), clr1, tit1);
+draw_line_3d(fig_cert.ax, x_draw, y2, confidence2, max(z_draw, [], 'all'), clr2, tit2);
+
 
 % fig_p1 = getFig('x', 'y', '$p_1(x,y)$', '', '', '', '$p_1$');
 % surf(x_grid, y_grid, p1, 'EdgeColor', 'interp', 'FaceColor', 'interp');
@@ -71,8 +81,18 @@ function [y, confidence] = lin_anal(linfit, d_linfit, x_draw)
     y = polyval(linfit, x_draw);
 end
 
-function draw_line(ax, y, confidence, x_draw, clr, tit)
+function draw_line(ax, x_draw, y, confidence, clr, tit)
     plot(ax, x_draw, y, 'DisplayName', tit, 'Color', clr);
     plot(ax, x_draw, y + confidence, '--', 'HandleVisibility', 'off', 'Color', clr);
     plot(ax, x_draw, y - confidence, '--', 'HandleVisibility', 'off', 'Color', clr);
 end
+
+function draw_line_3d(ax, x_draw, y, confidence, z_max, clr, tit)
+    plot3(ax, x_draw, y, ones(size(x_draw)) * z_max, ...
+          'DisplayName', tit, 'Color', clr, 'LineWidth', 1.5);
+    plot3(ax, x_draw, y + confidence, ones(size(x_draw)) * z_max, '--', ...
+          'HandleVisibility', 'off', 'Color', clr);
+    plot3(ax, x_draw, y - confidence, ones(size(x_draw)) * z_max, '--', ...
+          'HandleVisibility', 'off', 'Color', clr);
+end
+
